@@ -1,10 +1,10 @@
 <?php
 
 use App\Http\Controllers\AuthController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
-use GuzzleHttp\Middleware;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +19,8 @@ use GuzzleHttp\Middleware;
 Route::post('login',[AuthController::class,'login']);
 
 Route::middleware('auth:sanctum')->group(function(){
-
-    Route::resource('/contact',UserController::class);
-   
+    Route::get('/dashboard',[DashboardController::class,'dashboard']);
+    Route::resource('/contact',UserController::class);   
+    Route::resource('/product',ProductController::class);   
     Route::get('logout',[AuthController::class,'logout']);
-
 });

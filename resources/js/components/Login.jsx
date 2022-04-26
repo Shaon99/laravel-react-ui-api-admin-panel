@@ -23,13 +23,15 @@ class Login extends Component {
         email:this.state.email,
         password:this.state.password
       }   
-            axios.post('/api/login', payload, {headers: { 'Accept': 'application/json' } }).then(response => {
+            axios.post('/api/login', payload, {
+              headers: { 'Accept': 'application/json' } 
+            }).then(response => {
               localStorage.setItem('token',response.data.token);            
               localStorage.setItem('user',JSON.stringify(response.data.user));            
 
               if(localStorage.getItem('token')){
                   toast.success('Login Success',{autoClose: 2000,theme: 'dark'}); 
-                  this.props.navigate('/contact');
+                  this.props.navigate('/dashboard');
               }
              
             }).catch(error => {
@@ -47,19 +49,15 @@ class Login extends Component {
         });
     };
 
-
-
-
-
   render() {
     return (
       <section className="vh-100 gradient-custom">
         <div className="container py-5 h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-12 col-md-8 col-lg-6 col-xl-5">
-              <div className="card bg-dark text-white" style={{ borderRadius: "1rem" }}>
+              <div className="card bg-danger text-white" style={{ borderRadius: "1rem" }}>
                 <div className="card-body text-center">
-                  <h2 className="fw-bold mb-2 text-uppercase">Login</h2>
+                  <h3 className="fw-bold mb-2 text-uppercase">Login</h3>
                   <p className="text-white-50 mb-3">Please enter your email and password!</p>
 
                   <form onSubmit={this.formsubmit}>
@@ -75,8 +73,6 @@ class Login extends Component {
 
                     <p className="small mb-4 pb-lg-2"><a className="text-white-50" href="#!">Forgot password?</a>
                     </p>
-
-
                     <button className="btn btn-outline-light btn-lg px-5 mb-3" type="submit">Login</button>
                   </form>
                 </div>

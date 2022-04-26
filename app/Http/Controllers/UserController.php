@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users=User::all();
+        $users=User::where('id','!=',auth()->id())->get();
         return response()->json(['status'=>200,'users'=>$users]);
     }
 
@@ -134,4 +134,6 @@ class UserController extends Controller
         return response()->json(['status'=>200]);
         
     }
+
+   
 }
